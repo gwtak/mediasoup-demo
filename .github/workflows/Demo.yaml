@@ -1,0 +1,33 @@
+name: mediasoup-worker
+
+on: [pull_request, workflow_dispatch]
+
+jobs:
+  ci:
+    strategy:
+      fail-fast: false
+      matrix:
+        build:
+          - os: ubuntu-22.04
+            cc: gcc
+            cxx: g++
+        node:
+            - 22
+
+    runs-on: ${{ matrix.build.os }}
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+
+      - name: Compile
+        run: npm install
+
+      - name: List files
+        run: ls -laR
+        
