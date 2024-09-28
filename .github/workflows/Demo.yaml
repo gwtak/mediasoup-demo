@@ -25,8 +25,14 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Compile
-        run: npm install
+      - name: NPM Install
+        run: |
+          cd sever
+          npm install
+          cd -
+          cd app
+          npm install
+
 
       - name: List files
         run: ls -laR
