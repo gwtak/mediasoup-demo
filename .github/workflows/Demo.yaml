@@ -27,7 +27,7 @@ jobs:
 
       - name: NPM Install
         run: |
-          cd sever
+          cd server
           npm install
           cd -
           cd app
